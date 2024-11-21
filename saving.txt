@@ -1,0 +1,29 @@
+ -styling dropdown
+ if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            $data = json_decode($response, true);
+            $api = $data['rajaongkir']['results'][0]['costs'];
+            ob_start();
+            echo "<div class='mt-2'></div>";
+            foreach($api as $price){
+                echo "
+                <div class='p-3 border mb-2 rounded d-flex'>
+                    <input type='radio' name='price' value='".$price['cost'][0]['value']."' class='price-kurir me-3' onClick='function hi(){
+                        var total = Number($(\"#total-harga\" ).val());
+                        var ongkir = ".$price['cost'][0]['value'].";
+                        var akhir = total + ongkir;
+
+                        $(\"#ongkir\" ).val(ongkir);
+                        $(\"#total-harga\" ).val(akhir);
+                        $(\"#total-ongkir\").html(ongkir);
+                        $(\"#grand-total\").html(akhir);
+                    } hi();'>
+                    <div>
+                        <span class='d-block fw-semibold'>".$price['description']."</span>
+                        ".number_format($price['cost'][0]['value'])." (Hari : ".$price['cost'][0]['etd'].")
+                    </div>
+                </div>";
+            }
+            return ob_get_clean();
+        }

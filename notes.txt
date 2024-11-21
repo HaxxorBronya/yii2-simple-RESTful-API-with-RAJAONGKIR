@@ -1,0 +1,35 @@
+DATABASE
+Order
+- id            int             NN
+- name          varchar         NN
+- id_province   int             NN | RajaOngkir
+- id_cities     int             NN | RajaOngkir
+- kurir         varchar         NN 
+- service       varchar         NN             
+- ongkir        int / decimal   NN
+
+
+FORM
+input       : name 
+dropdown    : id_province
+dropdown    : id_cities
+dropdown    : id_cities
+dropdown    : kurir [
+    jne,
+    pos,
+    tiki
+]
+ketika select kurir maka muncul service 
+- reguler
+- express
+- 24 jam
+
+
+LANGKAH
+- save data provinsi dari API           - done
+- save data kota dari API               - done
+- buat dropdown provinsi di form        - done 
+- buat dropdown kota di form            - done 
+- buat dropdown kurir (JNE, POS, TIKI)  - done 
+- depent dropdown provinsi -> kota      - done
+- cek ongkir API 
